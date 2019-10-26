@@ -64,3 +64,24 @@ button:focus {
     height: 110px;
   }
 }
+
+@media only screen and (max-width: 479px) {
+  .card {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media only screen and (max-width: 439px) {
+  .card {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .card {
+    width: 80px;
+    height: 80px;
+  }
+}

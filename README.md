@@ -72,20 +72,22 @@ return new Promise(resolve => {
 }
 ```
 
+**Array shuffling by destructuring**
+
 ```
 // shuffles the cards around
 shuffleCards = () => {
-// clone state.cards into temp
-let temp = this.state.cards.slice();
+    // clone state.cards into temp
+    let temp = this.state.cards.slice();
 
-// every day i shuffle!
-for (let day = temp.length - 1; day > 0; day--) {
-    let i = Math.floor(Math.random() * (day + 1));
-    [temp[day], temp[i]] = [temp[i], temp[day]]
-}
+    // every day i shuffle!
+    for (let day = temp.length - 1; day > 0; day--) {
+        let i = Math.floor(Math.random() * (day + 1));
+        [temp[day], temp[i]] = [temp[i], temp[day]]
+    }
 
-// damn right you're shuffled!
-this.setState({ cards: temp })
+    // damn right you're shuffled!
+    this.setState({ cards: temp })
 }
 ```
 
@@ -121,4 +123,4 @@ GitHub: https://github.com/seiretsym<br>
 
 ## `Deployed Site:`
 
-Heroku: https://manisparkles.herokuapp.com/
+GitHub Pages: https://seiretsym.github.io/memory-game

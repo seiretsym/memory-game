@@ -75,7 +75,7 @@ class App extends Component {
         <Nav score={this.state.score} maxScore={this.state.maxScore} />
         <div className="container">
           <div className="row">
-            <div className="col-md-9 d-flex flex-wrap p-5 mx-auto">
+            <div className="col-md-9 d-flex flex-wrap justify-content-center p-5 mx-auto">
               {/* display the cards */}
               {this.state.cards.map((card, index) =>
                 <button onClick={() => this.handleCardClick(index)} key={index}>
@@ -86,9 +86,9 @@ class App extends Component {
                   ></Card>
                 </button>
               )}
+              </div>
             </div>
           </div>
-        </div>
       </Wrapper>
     )
   }

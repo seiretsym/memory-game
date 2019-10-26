@@ -3,6 +3,7 @@ import './App.css';
 import Wrapper from './components/Wrapper';
 import Nav from './components/Nav';
 import Card from './components/Card';
+import cardList from "./components/cardList.json"
 
 class App extends Component {
 
@@ -11,88 +12,7 @@ class App extends Component {
     score: 0,
     maxScore: 0,
     // cuz we have 16 cards
-    cards: [
-      {
-        color: "green",
-        clicked: false,
-        icon: "fa fa-arrow-left"
-      },
-      {
-        color: "darkgreen",
-        clicked: false,
-        icon: "fa fa-arrow-right"
-      },
-      {
-        color: "darkolivegreen",
-        clicked: false,
-        icon: "fa fa-arrow-up"
-      },
-      {
-        color: "olive",
-        clicked: false,
-        icon: "fa fa-arrow-down"
-      },
-      {
-        color: "red",
-        clicked: false,
-        icon: "fa fa-chevron-left"
-      },
-      {
-        color: "darkred",
-        clicked: false,
-        icon: "fa fa-chevron-right"
-      },
-      {
-        color: "firebrick",
-        clicked: false,
-        icon: "fa fa-chevron-up"
-      },
-      {
-        color: "crimson",
-        clicked: false,
-        icon: "fa fa-chevron-down"
-      },
-      {
-        color: "midnightblue",
-        clicked: false,
-        icon: "fa fa-caret-left"
-      },
-      {
-        color: "darkblue",
-        clicked: false,
-        icon: "fa fa-caret-right"
-      },
-      {
-        color: "darkcyan",
-        clicked: false,
-        icon: "fa fa-caret-up"
-      },
-      {
-        color: "dodgerblue",
-        clicked: false,
-        icon: "fa fa-caret-down"
-      },
-      {
-        color: "orange",
-        clicked: false,
-        icon: "fa fa-angle-double-left"
-      },
-      {
-        color: "orangered",
-        clicked: false,
-        icon: "fa fa-angle-double-right"
-      },
-      {
-        color: "darkorange",
-        clicked: false,
-        icon: "fa fa-angle-double-up"
-      },
-      {
-        color: "sandybrown",
-        clicked: false,
-        icon: "fa fa-angle-double-down"
-      }
-    ],
+    cards: cardList
   }
 
   // do stuff when card is clicked

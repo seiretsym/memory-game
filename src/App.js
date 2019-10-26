@@ -8,7 +8,6 @@ class App extends Component {
 
   // define state
   state = {
-
     score: 0,
     maxScore: 0,
     // cuz we have 16 cards
@@ -87,12 +86,14 @@ class App extends Component {
       // welp, user lost.
       this.lose()
     } else {
-      this.setState({
-        score: this.state.score + 1
-      })
+      // update card's clicked to true
       this.state.cards[i].clicked = true;
       this.state.cards[i].text = "Clicked";
       this.shuffleCards();
+      // update score
+      this.setState({
+        score: this.state.score + 1
+      })
     }
   }
 
@@ -128,8 +129,13 @@ class App extends Component {
         resolve();
       })
     }))
-      // forceUpdate after all promises have been resolved
-      .then(this.forceUpdate())
+      // once all promises are resolved...
+      .then(() => {
+        // update state so dom refreshes
+        this.setState({
+          cards: this.state.cards
+        })
+      })
 
   }
 

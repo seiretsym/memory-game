@@ -4,6 +4,7 @@ import Wrapper from './components/Wrapper';
 import Nav from './components/Nav';
 import Card from './components/Card';
 import cardList from "./components/cardList.json"
+import Instructions from "./components/Instructions"
 
 class App extends Component {
 
@@ -89,6 +90,8 @@ class App extends Component {
       <Wrapper>
         <Nav score={this.state.score} maxScore={this.state.maxScore} />
         <div className="container">
+          {/* display instructions */}
+          <Instructions />
           <div className="row">
             <div className="col-md-9 d-flex flex-wrap justify-content-center p-5 mx-auto">
               {/* display the cards */}

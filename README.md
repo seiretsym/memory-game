@@ -4,7 +4,7 @@
 
 ## `Summary`
 
-A simple memory game made with React. The game functions on mouse clicks and updates the DOM via **setState**.
+A simple memory game made with React. The game gradually gets harder because the cards are randomly shuffled after each click.
 
 ## `Highlights:`
 

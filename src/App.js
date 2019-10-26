@@ -17,29 +17,44 @@ class App extends Component {
 
   // do stuff when card is clicked
   handleCardClick = i => {
-    // if card has already been clicked...
-    if (this.state.cards[i].clicked) {
-      // welp, user lost.
-      this.lose()
-    } else {
-      this.setState({
-        cards: this.state.cards.map((card, index) => {
-          // if current card index matches i
-          if (index === i) {
-            // change clicked to true
-            card.clicked = true;
-          }
-          // return the card data back to array
-          return card;
-        }),
-        score: this.state.score + 1,
+    // wrap score conditions in a promise
+    return new Promise(resolve => {
+      // if card has already been clicked...
+      if (this.state.cards[i].clicked) {
+        // welp, user lost. restart!
+        this.restartGame()
+      } else {
+        this.setState({
+          cards: this.state.cards.map((card, index) => {
+            // if current card index matches i
+            if (index === i) {
+              // change clicked to true
+              card.clicked = true;
+            }
+            // return the card data back to array
+            return card;
+          }),
+          score: this.state.score + 1,
+        })
+        // resolve so we can process the next step
+        resolve()
+      }
+    })
+      // then...
+      .then(() => {
+        // max moves is 16, so..
+        if (this.state.score === 16) {
+          // restart if that's true
+          this.restartGame();
+        } else {
+          // continue the game and shuffle if not
+          this.shuffleCards();
+        }
       })
-      this.shuffleCards();
-    }
   }
 
   // things to do when user loses
-  lose = () => {
+  restartGame = () => {
     // reset score, set maxScore, reset clicked to false
     this.setState({
       maxScore: this.state.score,
@@ -86,9 +101,9 @@ class App extends Component {
                   ></Card>
                 </button>
               )}
-              </div>
             </div>
           </div>
+        </div>
       </Wrapper>
     )
   }

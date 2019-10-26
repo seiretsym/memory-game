@@ -93,7 +93,7 @@ class App extends Component {
           {/* display instructions */}
           <Instructions />
           <div className="row">
-            <div className="col-md-9 d-flex flex-wrap justify-content-center p-5 mx-auto">
+            <div className="col-md-9 d-flex flex-wrap justify-content-center p-0 mx-auto">
               {/* display the cards */}
               {this.state.cards.map((card, index) =>
                 <button onClick={() => this.handleCardClick(index)} key={index}>

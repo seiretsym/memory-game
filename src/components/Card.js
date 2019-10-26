@@ -5,16 +5,10 @@ function Card(props) {
     const style = {
         card: {
             background: props.color,
-            width: 150,
-            height: 150,
-            border: "1px solid black",
-            borderRadius: 20,
-            margin: 0,
-            padding: 0
         },
         icon: {
             color: "#DDDDDD",
-            fontSize: 100,
+            fontSize: 75,
             margin: "auto",
             padding: 0
         }

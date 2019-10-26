@@ -56,9 +56,14 @@ class App extends Component {
 
   // things to do when user loses
   restartGame = () => {
+    // check if score is higher than maxScore before updating
+    if (this.state.score > this.state.maxScore) {
+      this.setState({
+        maxScore: this.state.score
+      })
+    }
     // reset score, set maxScore, reset clicked to false
     this.setState({
-      maxScore: this.state.score,
       score: 0,
       cards: this.state.cards.map(card => {
         card.clicked = false;

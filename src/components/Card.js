@@ -11,12 +11,18 @@ function Card(props) {
             borderRadius: 20,
             margin: 0,
             padding: 0
+        },
+        icon: {
+            color: "#DDDDDD",
+            fontSize: 100,
+            margin: "auto",
+            padding: 0
         }
     }
 
     return (
         <div className="card" style={style.card}>
-            {props.children}
+            <i className={props.icon} style={style.icon}></i>
         </div>
     )
 }

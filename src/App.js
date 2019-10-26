@@ -15,66 +15,82 @@ class App extends Component {
       {
         color: "green",
         clicked: false,
+        icon: "fa fa-arrow-left"
       },
       {
         color: "darkgreen",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-arrow-right"
       },
       {
         color: "darkolivegreen",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-arrow-up"
       },
       {
         color: "olive",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-arrow-down"
       },
       {
         color: "red",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-chevron-left"
       },
       {
         color: "darkred",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-chevron-right"
       },
       {
         color: "firebrick",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-chevron-up"
       },
       {
         color: "crimson",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-chevron-down"
       },
       {
         color: "midnightblue",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-caret-left"
       },
       {
         color: "darkblue",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-caret-right"
       },
       {
         color: "darkcyan",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-caret-up"
       },
       {
         color: "dodgerblue",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-caret-down"
       },
       {
         color: "orange",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-angle-double-left"
       },
       {
         color: "orangered",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-angle-double-right"
       },
       {
         color: "darkorange",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-angle-double-up"
       },
       {
         color: "sandybrown",
-        clicked: false
+        clicked: false,
+        icon: "fa fa-angle-double-down"
       }
     ],
   }
@@ -86,28 +102,32 @@ class App extends Component {
       // welp, user lost.
       this.lose()
     } else {
-      // update card's clicked to true
-      this.state.cards[i].clicked = true;
-      this.state.cards[i].text = "Clicked";
-      this.shuffleCards();
-      // update score
       this.setState({
-        score: this.state.score + 1
+        cards: this.state.cards.map((card, index) => {
+          // if current card index matches i
+          if (index === i) {
+            // change clicked to true
+            card.clicked = true;
+          }
+          // return the card data back to array
+          return card;
+        }),
+        score: this.state.score + 1,
       })
+      this.shuffleCards();
     }
   }
 
   // things to do when user loses
   lose = () => {
-    // reset score and set maxScore
+    // reset score, set maxScore, reset clicked to false
     this.setState({
       maxScore: this.state.score,
-      score: 0
-    })
-    // reset the cards' clicked to false
-    this.state.cards.map(card => {
-      card.clicked = false;
-      card.text = "";
+      score: 0,
+      cards: this.state.cards.map(card => {
+        card.clicked = false;
+        return card;
+      })
     })
     // shuffle the cards again
     this.shuffleCards();
@@ -115,35 +135,24 @@ class App extends Component {
 
   // shuffles the cards around
   shuffleCards = () => {
-    Promise.all(this.state.cards.map((card, i) => {
-      // wrap in a promise to resolve one at a time
-      let promise = new Promise(resolve => {
-        // create a random number based on i
-        let num = Math.floor(Math.random() * (this.state.cards.length));
-        // store current card in temp
-        let temp = this.state.cards[i];
-        // do a shuffle
-        this.state.cards[i] = this.state.cards[num]
-        this.state.cards[num] = temp;
-        // resolve this promise
-        resolve();
-      })
-    }))
-      // once all promises are resolved...
-      .then(() => {
-        // update state so dom refreshes
-        this.setState({
-          cards: this.state.cards
-        })
-      })
+    // clone state.cards into temp
+    let temp = this.state.cards.slice();
 
+    // every day i shuffle!
+    for (let day = temp.length - 1; day > 0; day--) {
+      let i = Math.floor(Math.random() * (day + 1));
+      [temp[day], temp[i]] = [temp[i], temp[day]]
+    }
+
+    // damn right you're shuffled!
+    this.setState({ cards: temp })
   }
 
   // magically makes things appear
   render() {
     return (
       <Wrapper>
-        <Nav score={this.state.score} />
+        <Nav score={this.state.score} maxScore={this.state.maxScore} />
         <div className="container">
           <div className="row">
             <div className="col-md-9 d-flex flex-wrap p-5 mx-auto">
@@ -153,7 +162,8 @@ class App extends Component {
                   <Card
                     color={card.color}
                     key={index}
-                  >{card.text}</Card>
+                    icon={card.icon}
+                  ></Card>
                 </button>
               )}
             </div>

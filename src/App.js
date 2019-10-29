@@ -112,6 +112,7 @@ class App extends Component {
             </div>
           </div>
         </div>
+        <img src="images/logo512.png"></img>
       </Wrapper>
     )
   }
